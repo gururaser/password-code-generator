@@ -17,8 +17,18 @@ If you choose "Medium" level, you can create password along with what the simple
 If you choose "Expert" level, it's combine of the previous two and special symbols. ( Note: Probably websites won't accept some of these symbols but they added to make password more complicated. It's just sample )
 - It's like ^5X?m
 
-Important note : Because of the logic, although you choose the most difficult option you can face with password/code like A90bM. It's maybe low possibility but it is possible. I Will try to fix it in next publish.
+Important note : Because of the logic, although you choose the most difficult option you can face with password/code like A90bM. It's maybe low possibility but it is possible. I Will try to fix it in next publish. ( SOLVED )
+
+# UPDATE NOTES
+
+With help of some research I've found solution to problem I mentioned in "Important note".
+
+I also added two different code blocs to react what if user enters fewer data than we expect
+- First one completes with as many random characters as you left blank.
+- Second one wants user to enter the right number
 
 ## Screenshots
 
 ![Screenshot](https://github.com/gururaser/password-code-generator/blob/main/Code%20Generator/screenshot.png)
+![Screenshot](https://github.com/gururaser/password-code-generator/blob/main/Code%20Generator/screenshot2.png)
+![Screenshot](https://github.com/gururaser/password-code-generator/blob/main/Code%20Generator/screenshot3.png)
