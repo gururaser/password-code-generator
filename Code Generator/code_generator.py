@@ -17,37 +17,116 @@ class Generator:
     symbols = ['~', ':', "'", '+', '[', '\\', '@', '^', '{', '%', '(', '-', '"', '*', '|', ',', '&', '<', '`', '}', '.',
                '_', '=', ']', '!', '>', ';', '?', '#', '$', ')', '/']
 
-    final_code = []
-
-
     def __init__(self, long, level):
         self.long = long
         self.level = level
 
-
-
     def create_code(self):
-        # We made a certain number (the value with given self.long) of random selections
-        chosen_letters = random.sample(Generator.letters, self.long)
-        chosen_nums = random.sample(Generator.nums, self.long)
-        chosen_symbols = random.sample(Generator.symbols, self.long)
-
         if self.level == "Basic":
 
-            result = "".join(chosen_letters)
-            Generator.final_code.append(result)
+            random.shuffle(Generator.letters)
+
+            chosen_letter = random.sample(Generator.letters, self.long)
+
+            result = "".join(chosen_letter)
             return result
+
         elif self.level == "Medium":
-            # we combined the two lists into one list and chose values randomly
 
-            result = "".join(random.sample(chosen_letters + chosen_nums, self.long))
+            while True:
+                try:
+                    # number of character types
+                    letters_count = int(input("Enter letters count in password: "))
+                    numbers_count = int(input("Enter numbers count in password: "))
+                    total_count = letters_count + numbers_count
 
-            return result
+                    # check the total length with characters sum count
+                    # print not valid if the sum is greater than length
+                    if total_count > self.long:
+                        print("Characters total count is greater than the password length")
+
+                    code = []
+                    #  We are picking random letters
+                    for i in range(letters_count):
+                        code.append(random.choice(Generator.letters))
+                    #  We are picking random numbers
+                    for i in range(numbers_count):
+                        code.append(random.choice(Generator.nums))
+
+                    # if total count is less than the code length
+                    # we are adding some random characters from symbols
+                    # if you wish, you can change it.
+
+                    if total_count < self.long:
+                        random.shuffle(Generator.letters)
+                        for i in range(self.long - total_count):
+                            code.append(random.choice(Generator.letters))
+
+                    # # if you want user to re-enter total count again instead of
+                    # # adding some random numbers. You can use the code below
+                    #
+                    # if total_count < self.long:
+                    #     print(f"You've entered {total_count} characters count\nbut you must enter {self.long}. Please try again.")
+                    #     continue
+
+                    random.shuffle(code)
+
+                    return "".join(code)
+
+                except ValueError:
+                    print("Please enter integer number.")
+
         elif self.level == "Expert":
+            while True:
+                try:
+                    # number of character types
+                    letters_count = int(input("Enter letters count in password: "))
+                    numbers_count = int(input("Enter numbers count in password: "))
+                    symbols_count = int(input("Enter symbols count in password: "))
+                    total_count = letters_count + numbers_count + symbols_count
 
-            result = "".join(random.sample(chosen_letters + chosen_nums + chosen_symbols, self.long))
+                    # check the total length with characters sum count
+                    # print not valid if the sum is greater than length
+                    if total_count > self.long:
+                        print("Characters total count is greater than the password length")
+                        continue
 
-            return result
+                    code = []
+                    #  We are picking random letters
+                    for i in range(letters_count):
+                        code.append(random.choice(Generator.letters))
+                    #  We are picking random numbers
+                    for i in range(numbers_count):
+                        code.append(random.choice(Generator.nums))
+                    # We are picking random symbols
+                    for i in range(symbols_count):
+                        code.append(random.choice(Generator.symbols))
+
+                    # if total count is less than the code length
+                    # we are adding some random characters from symbols
+                    # if you wish, you can change it.
+
+                    if total_count < self.long:
+                        random.shuffle(Generator.symbols)
+                        for i in range(self.long - total_count):
+                            code.append(random.choice(Generator.symbols))
+
+                    # # if you want user to re-enter total count again instead of
+                    # # adding some random numbers. You can use the code below
+                    #
+                    # if total_count < self.long:
+                    #     print(f"You've entered {total_count} characters count\nbut you must enter {self.long}. Please try again.")
+                    #     continue
+
+
+                    random.shuffle(code)
+
+                    return "".join(code)
+
+                except ValueError:
+                    print("Please enter integer number.")
+
+
 while True:
     try:
         print("Welcome to password/code generator".upper())
@@ -62,20 +141,20 @@ while True:
             """4 - Exit"""
         )
         print("-" * 34)
-        option = int(input("Enter your choice: "))
+        option = int(input("Enter your choice: ".capitalize()))
         if option == 1:
-            password = Generator(long=length,level="Basic")
+            password = Generator(long=length, level="Basic")
             print(f"Result: {password.create_code()}")
-            last_message = input("Enter 'c' to continue\n")
+            last_message = input("Press Enter to continue\n")
         elif option == 2:
-            password2 = Generator(long=length,level="Medium")
+            password2 = Generator(long=length, level="Medium")
             print(f"Result: {password2.create_code()}")
-            last_message = input("Enter 'c' to continue\n")
+            last_message = input("Press Enter to continue\n")
         if option == 3:
-            password3 = Generator(long=length,level="Expert")
+            password3 = Generator(long=length, level="Expert")
             print(f"Result: {password3.create_code()}")
             print("-" * 34)
-            last_message = input("Enter 'c' to continue\n")
+            last_message = input("Press Enter to continue\n")
         elif option == 4:
             break
     except ValueError:
