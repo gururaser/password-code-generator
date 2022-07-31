@@ -1,6 +1,7 @@
 # password-code-generator
  A program who generates passwords/codes
-
+ 
+ ![Screenshot](https://github.com/gururaser/password-code-generator/blob/main/Code%20Generator/screenshot.png)
 
 ## Getting Started
 
@@ -25,10 +26,6 @@ With help of some research I've found solution to problem I mentioned in "Import
 
 I also added two different code blocs to react what if user enters fewer data than we expect
 - First one completes with as many random characters as you left blank.
-- Second one wants user to enter the right number
-
-## Screenshots
-
-![Screenshot](https://github.com/gururaser/password-code-generator/blob/main/Code%20Generator/screenshot.png)
 ![Screenshot](https://github.com/gururaser/password-code-generator/blob/main/Code%20Generator/screenshot2.png)
+- Second one wants user to enter the right number
 ![Screenshot](https://github.com/gururaser/password-code-generator/blob/main/Code%20Generator/screenshot3.png)
